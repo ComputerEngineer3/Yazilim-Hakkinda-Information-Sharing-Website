@@ -1,0 +1,86 @@
+﻿@model EntityLayer.Concrete.Member
+
+@{
+    ViewBag.Title = "MemberProfile";
+    Layout = "~/Views/Shared/_HomePageLayout.cshtml";
+}
+
+@section leftmenu{
+    <div>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Member/MemberProfile'"><b>Profil</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Member/AddWriting?titleID=0&subtitleID=0'"><b>Yazı Ekle</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Member/PublishedWritings'"><b>Yayınlanmış Yazılarım</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Member/PendingApprovalWritings'"><b>Onay Bekleyen Yazılarım</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Member/EditorialApplication'"><b>Editörlük Başvurusu</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Member/MemberPasswordUpdate'"><b>Şifreyi Değiştir</b></button>
+    </div>
+}
+
+@section content{
+    <div style=" width:450px; background-color:#c3dde8; margin-left:300px; padding:30px">
+        <h1 style="margin-left:160px">PROFİL</h1>
+        <br />
+        <br />
+        @using (Html.BeginForm("MemberProfile", "Member", FormMethod.Post))
+        {
+            <div style="margin-left:20px">
+                <table>
+                    <tr>
+                        <td style="font-size:25px"><b>@Html.Label("Ad:")</b></td>
+                        <td>@Html.TextBoxFor(x => x.MemberName, new { style = "width:235px" })</td>
+                        <td>@Html.ValidationMessageFor(x => x.MemberName)</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size:25px"><b>@Html.Label("Soyad:")</b></td>
+                        <td>@Html.TextBoxFor(x => x.MemberSurname, new { style = "width:235px" })</td>
+                        <td>@Html.ValidationMessageFor(x => x.MemberSurname)</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size:25px"><b>@Html.Label("Kullanıcı Adı:")</b></td>
+                        <td>@Html.TextBoxFor(x => x.MemberUsername, new { style = "width:235px" })</td>
+                        <td>@Html.ValidationMessageFor(x => x.MemberUsername)</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size:25px"><b>@Html.Label("Meslek")</b></td>
+                        <td>@Html.TextBoxFor(x => x.MemberJob, new { style = "width:235px" })</td>
+                        <td>@Html.ValidationMessageFor(x => x.MemberJob)</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size:25px"><b>@Html.Label("Hakkında:")</b></td>
+                        <td>@Html.TextAreaFor(x => x.MemberAbout, 8, 30, new { @class = "form-control" })</td>
+                        <td>@Html.ValidationMessageFor(x => x.MemberAbout)</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size:25px"><b>@Html.Label("E-mail:")</b></td>
+                        <td>@Html.TextBoxFor(x => x.MemberEmail, new { style = "width:235px" })</td>
+                        <td>@Html.ValidationMessageFor(x => x.MemberEmail)</td>
+                    </tr>
+                </table><br />
+                <button style="background-color:#365670; font-size:20px; margin-left:220px; margin-top:20px"><b>GÜNCELLE</b></button>
+            </div>
+        }
+    </div>
+    @if (ViewBag.Message != null)
+    {
+        if (ViewBag.Message == "Başarılı")
+        {
+            <script type="text/javascript">
+                if (confirm("Kullanıcı adını değiştirdiğiniz için tekrardan giriş yapmanız gerekmektedir.Ana sayfaya yönlendiriliyorsunuz...") == true) {
+                    window.location.href = "@Url.Action("Index","HomePage")";
+                }
+            </script>
+        }
+        else
+        {
+            <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            }
+            </script>
+            <br />
+            <br />
+        }
+
+    }
+}
+

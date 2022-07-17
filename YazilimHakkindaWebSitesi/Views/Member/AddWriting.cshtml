@@ -1,0 +1,46 @@
+﻿@model EntityLayer.Concrete.Writing
+
+@{
+    ViewBag.Title = "AddWriting";
+    Layout = "~/Views/Shared/_HomePageLayout.cshtml";
+}
+
+@section leftmenu{
+    <div>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Member/MemberProfile'"><b>Profil</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Member/AddWriting?titleID=0&subtitleID=0'"><b>Yazı Ekle</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Member/PublishedWritings'"><b>Yayınlanmış Yazılarım</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Member/PendingApprovalWritings'"><b>Onay Bekleyen Yazılarım</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Member/EditorialApplication'"><b>Editörlük Başvurusu</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Member/MemberPasswordUpdate'"><b>Şifreyi Değiştir</b></button>
+    </div>
+}
+
+@section content{
+    @using (Html.BeginForm("AddWriting", "Member", FormMethod.Post))
+    {
+        <div style="margin-left:30px; background-color:#c3dde8; padding:30px;">
+            <table style="margin-left:90px">
+                <tr>
+                    <td style="font-size:25px"><b>@Html.Label("Başlık Seçin:")</b></td>
+                    <td>@Html.DropDownListFor(x => x.TitleID, (List<SelectListItem>)ViewBag.titleList, new { @class = "form-control" })</td>
+                </tr>
+                <tr>
+                    <td style="font-size:25px"><b>@Html.Label("Alt Başlık Seçin:")</b></td>
+                    <td>@Html.DropDownListFor(x => x.SubtitleID, (List<SelectListItem>)ViewBag.subtitleList, new { @class = "form-control" })</td>
+                </tr>
+                <tr>
+                    <td style="font-size:25px"><b>@Html.Label("Yazının Başlığı:")</b></td>
+                    <td>@Html.TextBoxFor(x => x.WritingTitle, new { style = "width:675px" })</td>
+                    <td>@Html.ValidationMessageFor(x => x.WritingTitle)</td>
+                </tr>
+                <tr>
+                    <td style="font-size:25px"><b>@Html.Label("Yazı Metni:")</b></td>
+                    <td>@Html.TextAreaFor(x => x.WritingText, 30, 90, new { @class = "form-control" })</td>
+                    <td>@Html.ValidationMessageFor(x => x.WritingText)</td>
+                </tr>
+            </table><br />
+            <button style="background-color:#365670; font-size:25px; margin-left:550px"><b>PAYLAŞ</b></button>
+        </div>
+    }
+}

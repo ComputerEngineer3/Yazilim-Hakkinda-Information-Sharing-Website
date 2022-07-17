@@ -1,0 +1,19 @@
+﻿@using EntityLayer.Concrete
+@model List<Writing>
+
+@{
+    ViewBag.Title = "WritingSearch";
+    Layout = "~/Views/Shared/_HomePageLayout.cshtml";
+}
+
+@foreach (var item in Model)
+{
+    <div style="width:330px; height:330px; background-color:#c3dde8; float:left; margin:20px">
+        <h2 style="height:50px; margin-left:10px; overflow:hidden; overflow-wrap:break-word; display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2">@item.WritingTitle</h2>
+        <p style="height:10px"><b>@item.Member.MemberName @item.Member.MemberSurname</b></p>
+        <p style="height:110px; overflow:hidden; display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:6; text-align:justify; margin-left:10px; margin-top:10px; margin-right:10px; text-indent:30px">@item.WritingText</p>
+        <p style="margin-left:10px"><b>@item.WritingDate.ToShortDateString()</b></p>
+        <button style="float:right; margin-right:10px; background-color:#365670; font-size:15px" onclick="location='/HomePage/WritingReview?writingID=@item.WritingID'"><b>Devamını Oku...</b></button>
+    </div>
+}
+

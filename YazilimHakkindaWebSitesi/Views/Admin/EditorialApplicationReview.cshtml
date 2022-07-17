@@ -1,0 +1,32 @@
+﻿@using EntityLayer.Concrete
+@model EditorialApplication
+
+@{
+    ViewBag.Title = "EditorialApplicationReview";
+    Layout = "~/Views/Shared/_HomePageLayout.cshtml";
+}
+
+@section leftmenu{
+    <div>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Admin/EditorOperations'"><b>Editör İşlemleri</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Admin/AllEditorialApplications'"><b>Editörlük Başvuruları</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Admin/ContactMessages'"><b>İletişim Mesajları</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Admin/AdminPasswordUpdate'"><b>Şifreyi Değiştir</b></button>
+    </div>
+}
+
+@section content{
+    <div style="padding:20px">
+        <p style="font-size:20px"><b>Ad Soyad:</b> @Model.NameSurname</p>
+        <p style="font-size:20px"><b>Yaş:</b> @Model.Age</p>
+        <p style="font-size:20px"><b>İl:</b> @Model.City</p>
+        <p style="font-size:20px"><b>Telefon numarası:</b> @Model.PhoneNumber</p>
+        <p style="font-size:20px"><b>E-mail Adresi:</b> @Model.Email</p>
+        <p style="font-size:20px"><b>Mezuniyet Durumu:</b> @Model.GraduationStatus</p>
+        <p style="font-size:20px"><b>Editörlük Yapmak İstenilen Alan:</b> @Model.RelatedTitle</p>
+        <p style="font-size:20px"><b>Bu Alanla İlgili Deneyimler:</b> @Model.RelatedTitleExperiences</p>
+        <p style="font-size:20px"><b>Haftalık ayırılabilecek minimum saat:</b> @Model.WeeklyMinStudyTime</p>
+        <p style="font-size:20px"><b>Kısaca Özgeçmiş:</b> @Model.ShortResume</p>
+        <button style="margin-left:450px; margin-top:10px; background-color:#365670; font-size:25px" onclick="location = '/Admin/DeleteEditorialApplication?id=@Model.EditorialApplicationID'"><b>Başvuruyu Sil</b></button>
+    </div>
+}

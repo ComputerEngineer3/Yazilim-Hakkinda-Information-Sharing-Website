@@ -1,0 +1,93 @@
+﻿@model EntityLayer.Concrete.EditorialApplication
+
+@{
+    ViewBag.Title = "EditorialApplication";
+    Layout = "~/Views/Shared/_HomePageLayout.cshtml";
+}
+
+@section leftmenu{
+    <div>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Member/MemberProfile'"><b>Profil</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Member/AddWriting?titleID=0&subtitleID=0'"><b>Yazı Ekle</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Member/PublishedWritings'"><b>Yayınlanmış Yazılarım</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Member/PendingApprovalWritings'"><b>Onay Bekleyen Yazılarım</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Member/EditorialApplication'"><b>Editörlük Başvurusu</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/MEmber/MemberPasswordUpdate'"><b>Şifreyi Değiştir</b></button>
+    </div>
+}
+
+@section content{
+    <div style="width:1040px; margin-left:20px; background-color:#c3dde8; padding:30px">
+        <h1 style="margin-left:210px">EDİTÖRLÜK BAŞVURU FORMU</h1>
+        <br />
+        <br />
+        @using (Html.BeginForm("EditorialApplication", "Member", FormMethod.Post))
+        {
+            <div style="margin-left:30px">
+                <table>
+                    <tr>
+                        <td style="font-size:25px"><b>@Html.Label("Ad Soyad:")</b></td>
+                        <td>@Html.TextBoxFor(x => x.NameSurname, new { style = "width:382px" })</td>
+                        <td>@Html.ValidationMessageFor(x => x.NameSurname)</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size:25px"><b>@Html.Label("Yaş:")</b></td>
+                        <td>@Html.TextBoxFor(x => x.Age, new { style = "width:382px" })</td>
+                        <td>@Html.ValidationMessageFor(x => x.Age)</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size:25px"><b>@Html.Label("İl:")</b></td>
+                        <td>@Html.TextBoxFor(x => x.City, new { style = "width:382px" })</td>
+                        <td>@Html.ValidationMessageFor(x => x.City)</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size:25px"><b>@Html.Label("Telefon Numarası:")</b></td>
+                        <td>@Html.TextBoxFor(x => x.PhoneNumber, new { style = "width:382px" })</td>
+                        <td>@Html.ValidationMessageFor(x => x.PhoneNumber)</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size:25px"><b>@Html.Label("E-mail Adresi:")</b></td>
+                        <td>@Html.TextBoxFor(x => x.Email, new { style = "width:382px" })</td>
+                        <td>@Html.ValidationMessageFor(x => x.Email)</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size:25px"><b>@Html.Label("Mezuniyet Durumu:")</b></td>
+                        <td>@Html.TextBoxFor(x => x.GraduationStatus, new { style = "width:382px" })</td>
+                        <td>@Html.ValidationMessageFor(x => x.GraduationStatus)</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size:25px"><b>@Html.Label("Editörlük Yapmak İstediğiniz Alan:")</b></td>
+                        <td>@Html.TextBoxFor(x => x.RelatedTitle, new { style = "width:382px" })</td>
+                        <td>@Html.ValidationMessageFor(x => x.RelatedTitle)</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size:25px"><b>@Html.Label("Bu Alanla İlgili Deneyimleriniz:")</b></td>
+                        <td>@Html.TextAreaFor(x => x.RelatedTitleExperiences, 20, 50, new { @class = "form-control" })</td>
+                        <td>@Html.ValidationMessageFor(x => x.RelatedTitleExperiences)</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size:25px"><b>@Html.Label("Haftalık ayırabileceğiniz minimum saat:")</b></td>
+                        <td>@Html.TextBoxFor(x => x.WeeklyMinStudyTime, new { style = "width:382px" })</td>
+                        <td>@Html.ValidationMessageFor(x => x.WeeklyMinStudyTime)</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size:25px"><b>@Html.Label("Kısaca Özgeçmişiniz:")</b></td>
+                        <td>@Html.TextAreaFor(x => x.ShortResume, 20, 50, new { @class = "form-control" })</td>
+                        <td>@Html.ValidationMessageFor(x => x.ShortResume)</td>
+                    </tr>
+                </table><br /><br />
+                <button style="background-color:#365670; font-size:30px; margin-left:500px"><b>BAŞVURU YAP</b></button><br /><br /><br />
+            </div>
+        }
+    </div>
+    @if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            }
+        </script>
+    }
+    <br />
+    <br />
+}

@@ -1,0 +1,55 @@
+﻿@using EntityLayer.Concrete
+@model List<Subtitle>
+
+@{
+    ViewBag.Title = "SubtitleEdit";
+    Layout = "~/Views/Shared/_HomePageLayout.cshtml";
+}
+
+<style>
+    #tbl {
+        border: 2px solid black;
+        font-size: 30px;
+    }
+</style>
+
+@section leftmenu{
+    <div>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Editor/EditorProfile'"><b>Profil</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Editor/SubtitleEdit'"><b>Alt Başlıkları Düzenle</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Editor/NewAddedWritings'"><b>Yeni Eklenen Yazılar</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Editor/PublishedWritings'"><b>Yayınlanmış Yazılar</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Editor/EditorPasswordUpdate'"><b>Şifreyi Değiştir</b></button>
+    </div>
+}
+
+@section content{
+    <div style="margin-left:100px">
+        <h1 style="margin-left:250px">@ViewBag.TitleName</h1><br />
+        <table>
+            <tr>
+                <th id="tbl">ID</th>
+                <th id="tbl">ALT BAŞLIK İSMİ</th>
+                <th id="tbl">DURUM</th>
+                <th id="tbl">SİLME</th>
+                <th id="tbl">EKLEME</th>
+                <th id="tbl">GÜNCELLEME</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td id="tbl">@item.SubtitleID</td>
+                    <td id="tbl">@item.SubtitleName</td>
+                    <td id="tbl">@item.SubtitleStatus</td>
+                    <td id="tbl" align="center"><button style="background-color:#752213; font-size:25px" onclick="location='/Editor/DeleteSubtitle/@item.SubtitleID'">Sil</button></td>
+                    <td id="tbl" align="center"><button style="background-color:#214025; font-size:25px" onclick="location='/Editor/AddAgainSubtitle/@item.SubtitleID'">Ekle</button></td>
+                    <td id="tbl" align="center"><button style="background-color:#949135; font-size:25px" onclick="location='/Editor/UpdateSubtitle/@item.SubtitleID'">Güncelle</button></td>
+                </tr>
+            }
+        </table><br /><br />
+        <button style="background-color:#365670; font-size:25px; margin-left:350px" onclick="location='/Editor/AddSubtitle'"><b>Yeni Alt Başlık Ekle</b></button>
+    </div>
+    <br />
+    <br />
+    <br />
+}

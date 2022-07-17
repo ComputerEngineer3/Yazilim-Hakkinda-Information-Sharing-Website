@@ -1,0 +1,100 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8" />
+    <title>Yazılım Hakkında</title>
+    <link href="~/Views/Css/Style.css" rel="stylesheet" />
+</head>
+<body>
+    <div style="height:175px; background-color:#365670">
+        <img style="margin-top:20px; margin-left:70px" src="~/Images/websiteLogo.png" alt="Sitenin Logosu" />
+        <img style="margin:10px; margin-left:50px;" src="~/Images/websiteName.png" alt="Yazılım Hakkında" />
+        @using (Html.BeginForm("WritingSearch", "HomePage", FormMethod.Post, new { islem = "kelimearama" }))
+        {
+            <input style="position:relative; height:30px; bottom:60px; left:800px" ; type="text" placeholder="Aramak istediğiniz kelimeyi girin...." size="40" id="word" name="word" /><button style="position:relative; bottom:57px; left:800px; height:36px; background-color:#2B3E52; color:white; font-size:20px;">ARA</button>
+        }
+        <table style="border:2px solid black; background-color:#2B3E52; color:black; position:absolute; top:20px; right:50px; width:130px; height:80px">
+            <tr style="border-left:3px">
+                <td rowspan="2"><img style="width:50px; height:65px; margin:5px" src="~/Images/user.png" /></td>
+                @if (Session["UserName"] == null)
+                {
+                    <td><button style="border:3px solid black; height:80px; width:110px; margin:5px; background-color:#2B3E52; font-size:20px; border-radius:8px; cursor:pointer" onclick="location='/HomePage/UyeOlGirisYap'"><b>Giriş Yap<br />-<br />Üye Ol</b></button></td>
+                }
+                else
+                {
+                    <td style="font-size:20px">
+                        <b style="margin-top:10px">@Session["UserName"].ToString()</b> <br />
+
+                        @using (Html.BeginForm("Index", "HomePage", FormMethod.Post, new { islem = "logout" }))
+                        {
+                            <button style="background-color:#5e1f1c; font-size:20px; margin-top:5px; margin-left:5px;">Çıkış</button>
+                        }
+
+                        <!--<input type="button" value="Logout" onclick="location.href = '@Url.Action("Index","HomePage")'" />-->
+
+                    </td>
+                }
+            </tr>
+        </table>
+        <br /><br />
+        <button style="margin-left:20px; background-color:#365670; color:white; cursor:pointer; font-size:22px; height:40px; border:2px solid black; border-radius:8px; position:relative; top:-50px" onclick="location='/HomePage/Index'">ANA SAYFA</button>
+        <button style="background-color:#365670; color:white; cursor:pointer; font-size:22px; height:40px; border:2px solid black; border-radius:8px; position:relative; top:-50px" onclick="location='/HomePage/Title?titleName=MOBİL UYGULAMA'">MOBİL UYGULAMA</button>
+        <button style="background-color:#365670; color:white; cursor:pointer; font-size:22px; height:40px; border:2px solid black; border-radius:8px; position:relative; top:-50px" onclick="location='/HomePage/Title?titleName=YAPAY ZEKA'">YAPAY ZEKA</button>
+        <button style="background-color:#365670; color:white; cursor:pointer; font-size:22px; height:40px; border:2px solid black; border-radius:8px; position:relative; top:-50px" onclick="location='/HomePage/Title?titleName=WEB GELİŞTİRME'">WEB GELİŞTİRME</button>
+        <button style="background-color:#365670; color:white; cursor:pointer; font-size:22px; height:40px; border:2px solid black; border-radius:8px; position:relative; top:-50px" onclick="location='/HomePage/Title?titleName=ALGORİTMA'">ALGORİTMA</button>
+        <button style="background-color:#365670; color:white; cursor:pointer; font-size:22px; height:40px; border:2px solid black; border-radius:8px; position:relative; top:-50px" onclick="location='/HomePage/Title?titleName=PROGRAMLAMA DİLLERİ'">PROGRAMLAMA DİLLERİ</button>
+        <button style="background-color:#365670; color:white; cursor:pointer; font-size:22px; height:40px; border:2px solid black; border-radius:8px; position:relative; top:-50px" onclick="location='/HomePage/Title?titleName=SİBER GÜVENLİK'">SİBER GÜVENLİK</button>
+        <button style="background-color:#365670; color:white; cursor:pointer; font-size:22px; height:40px; border:2px solid black; border-radius:8px; position:relative; top:-50px" onclick="location='/HomePage/Iletisim'">İLETİŞİM</button>
+    </div>
+
+    <div>
+        @RenderBody()
+        <div style="width:20%; min-height:100px; float:left; margin-left:20px; margin-right:20px; margin-top:20px">
+            @RenderSection("leftmenu", false)
+            <br />
+        </div>
+        <div style="width:75%; min-height:100px; float:right; margin-right:20px; margin-top:20px">
+            @RenderSection("content", false)
+            <br />
+        </div>
+    </div>
+
+    <br />
+
+    <footer style="height:350px; width:1500px; background-color:#365670; float:left">
+        <div>
+            <div style="background-color:#365670; width:33%; height:300px; float:left">
+                <br /><br /><br />
+                <img style="width:110px; height:110px; margin:10px; margin-left:40px; margin-top:50px" src="~/Images/websiteLogo.png" alt="Sitenin Logosu" />
+                <img style="width:400px; height:60px; position:relative; bottom:95px; margin-left:190px" src="~/Images/websiteName.png" alt="Yazılım Hakkında" />
+            </div>
+            <div style="background-color:#365670; margin-left:10px; width:33%; height:300px; float:left">
+                <h2 style="margin-left:230px; font-weight:bold; color:white">KATEGORİLER</h2>
+                <p style="margin-left:230px;"><a style="color:white; font-weight:bold; font-size:10px; text-decoration:none; cursor:pointer" onclick="location='/HomePage/Title?titleName=MOBİL UYGULAMA'">MOBİL UYGULAMA</a></p>
+                <p style="margin-left:230px;"><a style="color:white; font-weight:bold; font-size:10px; text-decoration:none; cursor:pointer" onclick="location='/HomePage/Title?titleName=YAPAY ZEKA'">YAPAY ZEKA</a></p>
+                <p style="margin-left:230px;"><a style="color:white; font-weight:bold; font-size:10px; text-decoration:none; cursor:pointer" onclick="location='/HomePage/Title?titleName=WEB GELİŞTİRME'">WEB GELİŞTİRME</a></p>
+                <p style="margin-left:230px;"><a style="color:white; font-weight:bold; font-size:10px; text-decoration:none; cursor:pointer" onclick="location='/HomePage/Title?titleName=ALGORİTMA'">ALGORİTMA</a></p>
+                <p style="margin-left:230px;"><a style="color:white; font-weight:bold; font-size:10px; text-decoration:none; cursor:pointer" onclick="location='/HomePage/Title?titleName=PROGRAMLAMA DİLLERİ'">PROGRAMLAMA DİLLERİ</a></p>
+                <p style="margin-left:230px;"><a style="color:white; font-weight:bold; font-size:10px; text-decoration:none; cursor:pointer" onclick="location='/HomePage/Title?titleName=SİBER GÜVENLİK'">SİBER GÜVENLİK</a></p>
+            </div>
+            <div style="background-color:#365670; width:33%; height:300px; float:left">
+                <h1 style="text-align:center; margin-left:100px; color:white">İLETİŞİM</h1>
+                <img style="margin-left:180px; margin-top:20px" src="~/Images/email.png" alt="abc" />
+                <p style="position:relative; bottom:45px; left:220px; color:white">bitirme_projesi1357@outlook.com</p>
+                <img style="position:relative; margin-left:180px; margin-bottom:70px;" src="~/Images/location.png" alt="adres" />
+                <p style="position:relative; bottom:115px; left:220px; color:white">Zonguldak, Turkey</p>
+            </div>
+        </div>
+        <div>
+            <br />
+            <p style="margin-bottom:5px; margin-top:300px; text-align:center; color:white; font-size:15px">&copy; 2022. Aynur Hasanoğlu. Zonguldak Bülent Ecevit Üniversitesi.</p>
+        </div>
+    </footer>
+</body>
+</html>

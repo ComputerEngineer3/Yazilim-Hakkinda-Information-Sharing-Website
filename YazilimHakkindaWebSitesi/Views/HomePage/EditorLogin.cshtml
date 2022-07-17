@@ -1,0 +1,39 @@
+﻿@model EntityLayer.Concrete.Editor
+
+@{
+    ViewBag.Title = "EditorLogin";
+    Layout = "~/Views/Shared/_HomePageLayout.cshtml";
+}
+
+@if (Session["UserName"] == null)
+{
+    <div style="background-color:#c3dde8; width:400px; height:300px; margin-top:50px; margin-left:500px; padding:30px;">
+        <h1 style="margin-left:80px; margin-top:50px;">GİRİŞ SAYFASI</h1>
+        <br /><br />
+        @using (Html.BeginForm("EditorLogin", "HomePage", FormMethod.Post))
+        {
+            <div style="margin-left:50px">
+                <table>
+                    <tr>
+                        <td style="font-size:20px"><b>@Html.Label("Kullanıcı Adı:")</b></td>
+                        <td>@Html.TextBoxFor(x => x.EditorUsername)</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size:20px"><b>@Html.Label("Şifre:")</b></td>
+                        <td>@Html.PasswordFor(x => x.EditorPassword)</td>
+                    </tr>
+                </table><br />
+                <button style="background-color:#365670; font-size:20px; margin-left:160px"><b>GİRİŞ YAP</b></button>
+            </div>
+        }
+    </div>
+}
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            alert("@ViewBag.Message");
+        }
+    </script>
+}

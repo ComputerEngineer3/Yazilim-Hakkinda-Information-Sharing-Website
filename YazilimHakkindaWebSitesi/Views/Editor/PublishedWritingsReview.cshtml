@@ -1,0 +1,28 @@
+﻿@using EntityLayer.Concrete
+@model Writing
+
+@{
+    ViewBag.Title = "PublishedWritingsReview";
+    Layout = "~/Views/Shared/_HomePageLayout.cshtml";
+}
+
+@section leftmenu{
+    <div>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Editor/EditorProfile'"><b>Profil</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Editor/SubtitleEdit'"><b>Alt Başlıkları Düzenle</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Editor/NewAddedWritings'"><b>Yeni Eklenen Yazılar</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Editor/PublishedWritings'"><b>Yayınlanmış Yazılar</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Editor/EditorPasswordUpdate'"><b>Şifreyi Değiştir</b></button>
+    </div>
+}
+
+@section content{
+    <div>
+        <h1>@Model.WritingTitle</h1>
+        <h3>@Model.Member.MemberName @Model.Member.MemberSurname</h3>
+        <p>@Model.WritingText</p>
+        <h5>@Model.WritingDate.ToShortDateString() </h5>
+        <button style="background-color:#365670; font-size:25px; margin-left:50%; margin-right:50%" onclick="location = '/Editor/RemoveWriting?writingID=@Model.WritingID'"><b>KALDIR</b></button>
+    </div>
+}
+

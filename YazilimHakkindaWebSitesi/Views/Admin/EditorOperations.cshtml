@@ -1,0 +1,56 @@
+﻿@using EntityLayer.Concrete
+@model List<Editor>
+
+@{
+    ViewBag.Title = "EditorOperations";
+    Layout = "~/Views/Shared/_HomePageLayout.cshtml";
+}
+
+<style>
+    #tbl {
+        border: 2px solid black;
+        font-size: 30px;
+    }
+</style>
+
+@section leftmenu{
+    <div>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Admin/EditorOperations'"><b>Editör İşlemleri</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Admin/AllEditorialApplications'"><b>Editörlük Başvuruları</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Admin/ContactMessages'"><b>İletişim Mesajları</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Admin/AdminPasswordUpdate'"><b>Şifreyi Değiştir</b></button>
+    </div>
+}
+
+@section content{
+    <div>
+        <h1 style="margin-left:450px">EDİTÖRLER</h1><br />
+        <table>
+            <tr>
+                <th id="tbl">ID</th>
+                <th id="tbl">AD</th>
+                <th id="tbl">SOYAD</th>
+                <th id="tbl">KULLANICI ADI</th>
+                <th id="tbl">E-MAIL</th>
+                <th id="tbl">YETKİLİ OLDUĞU BAŞLIK</th>
+                <th id="tbl">SİL</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td id="tbl">@item.EditorID</td>
+                    <td id="tbl">@item.EditorName</td>
+                    <td id="tbl">@item.EditorSurname</td>
+                    <td id="tbl">@item.EditorUsername</td>
+                    <td id="tbl">@item.EditorEmail</td>
+                    <td id="tbl">@item.Title.TitleName</td>
+                    <td id="tbl" align="center"><button style="background-color:#752213; font-size:25px" onclick="location = '/Admin/DeleteEditor/@item.EditorID'">Sil</button></td>
+                </tr>
+            }
+        </table><br /><br />
+        <button style="background-color:#365670; font-size:25px; margin-left:450px" onclick="location='/Admin/AddEditor?titleID=0'"><b>Yeni Editör Ekle</b></button>
+    </div>
+    <br />
+    <br />
+    <br />
+}

@@ -1,0 +1,77 @@
+﻿@model EntityLayer.Concrete.Member
+
+@{
+    ViewBag.Title = "UyeOlmaSayfasi";
+    Layout = "~/Views/Shared/_HomePageLayout.cshtml";
+}
+
+
+<div>
+    <h1 style="margin-left:680px; color:#365670">ÜYE OL</h1>
+    <br /><br />
+    @using (Html.BeginForm("UyeOlmaSayfasi", "HomePage", FormMethod.Post))
+    {
+        <div style="margin-left:550px">
+            <table>
+                <tr>
+                    <td style="font-size:25px"><b>@Html.Label("Ad:")</b></td>
+                    <td>@Html.TextBoxFor(x => x.MemberName, new { style = "width:235px" })</td>
+                    <td>@Html.ValidationMessageFor(x => x.MemberName)</td>
+                </tr>
+                <tr>
+                    <td style="font-size:25px"><b>@Html.Label("Soyad:")</b></td>
+                    <td>@Html.TextBoxFor(x => x.MemberSurname, new { style = "width:235px" })</td>
+                    <td>@Html.ValidationMessageFor(x => x.MemberSurname)</td>
+                </tr>
+                <tr>
+                    <td style="font-size:25px"><b>@Html.Label("Kullanıcı Adı:")</b></td>
+                    <td>@Html.TextBoxFor(x => x.MemberUsername, new { style = "width:235px" })</td>
+                    <td>@Html.ValidationMessageFor(x => x.MemberUsername)</td>
+                </tr>
+                <tr>
+                    <td style="font-size:25px"><b>@Html.Label("Meslek:")</b></td>
+                    <td>@Html.TextBoxFor(x => x.MemberJob, new { style = "width:235px" })</td>
+                    <td>@Html.ValidationMessageFor(x => x.MemberJob)</td>
+                </tr>
+                <tr>
+                    <td style="font-size:25px"><b>@Html.Label("Hakkında:")</b></td>
+                    <td>@Html.TextAreaFor(x => x.MemberAbout, 8, 30, new { @class = "form-control" })</td>
+                    <td>@Html.ValidationMessageFor(x => x.MemberAbout)</td>
+                </tr>
+                <tr>
+                    <td style="font-size:25px"><b>@Html.Label("E-mail:")</b></td>
+                    <td>@Html.TextBoxFor(x => x.MemberEmail, new { style = "width:235px" })</td>
+                    <td>@Html.ValidationMessageFor(x => x.MemberEmail)</td>
+                </tr>
+                <tr>
+                    <td style="font-size:25px"><b>@Html.Label("Şifre:")</b></td>
+                    <td>@Html.PasswordFor(x => x.MemberPassword, new { style = "width:235px" })</td>
+                    <td>@Html.ValidationMessageFor(x => x.MemberPassword)</td>
+                </tr>
+            </table><br />
+            <button style="background-color:#365670; font-size:25px; margin-left:230px"><b>Üye Ol</b></button>
+        </div>
+    }
+</div>
+
+@if (ViewBag.Message != null)
+{
+    if (ViewBag.Message == "Başarılı")
+    {
+        <script type="text/javascript">
+        if (confirm("Üye olma işlemi başarıyla gerçekleştirilmiştir. Giriş yapmanız için ana sayfaya yönlendiriliyorsunuz...") == true) {
+            window.location.href = "@Url.Action("Index","HomePage")";
+        }
+        </script>
+    }
+
+    else
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            }
+        </script>
+    }
+
+}

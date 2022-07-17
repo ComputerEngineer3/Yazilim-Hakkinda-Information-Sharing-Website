@@ -1,0 +1,55 @@
+﻿@model EntityLayer.Concrete.Editor
+
+@{
+    ViewBag.Title = "AddEditor";
+    Layout = "~/Views/Shared/_HomePageLayout.cshtml";
+}
+
+@section leftmenu{
+    <div>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Admin/EditorOperations'"><b>Editör İşlemleri</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Admin/AllEditorialApplications'"><b>Editörlük Başvuruları</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Admin/ContactMessages'"><b>İletişim Mesajları</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Admin/AdminPasswordUpdate'"><b>Şifreyi Değiştir</b></button>
+    </div>
+}
+
+@section content{
+    @using (Html.BeginForm("AddEditor", "Admin", FormMethod.Post))
+    {
+        <div style="width:500px; background-color:#c3dde8; margin-left:200px; margin-top:30px; padding:30px">
+            <table>
+                <tr>
+                    <td style="font-size:25px"><b>@Html.Label("Ad:")</b></td>
+                    <td>@Html.TextBoxFor(x => x.EditorName, new { style = "width:235px" })</td>
+                    <td>@Html.ValidationMessageFor(x => x.EditorName)</td>
+                </tr>
+                <tr>
+                    <td style="font-size:25px"><b>@Html.Label("Soyad:")</b></td>
+                    <td>@Html.TextBoxFor(x => x.EditorSurname, new { style = "width:235px" })</td>
+                    <td>@Html.ValidationMessageFor(x => x.EditorSurname)</td>
+                </tr>
+                <tr>
+                    <td style="font-size:25px"><b>@Html.Label("Kullanıcı Adı:")</b></td>
+                    <td>@Html.TextBoxFor(x => x.EditorUsername, new { style = "width:235px" })</td>
+                    <td>@Html.ValidationMessageFor(x => x.EditorUsername)</td>
+                </tr>
+                <tr>
+                    <td style="font-size:25px"><b>@Html.Label("E-mail:")</b></td>
+                    <td>@Html.TextBoxFor(x => x.EditorEmail, new { style = "width:235px" })</td>
+                    <td>@Html.ValidationMessageFor(x => x.EditorEmail)</td>
+                </tr>
+                <tr>
+                    <td style="font-size:25px"><b>@Html.Label("Şifre:")</b></td>
+                    <td>@Html.TextBoxFor(x => x.EditorPassword, new { style = "width:235px" })</td>
+                    <td>@Html.ValidationMessageFor(x => x.EditorPassword)</td>
+                </tr>
+                <tr>
+                    <td style="font-size:25px"><b>@Html.Label("Yetkili Olacağı Başlık:")</b></td>
+                    <td>@Html.DropDownListFor(x => x.TitleID, (List<SelectListItem>)ViewBag.titleList, new { @class = "form-control" })</td>
+                </tr>
+            </table><br />
+            <button style="background-color:#365670; font-weight:bold; font-size:20px; margin-left:200px">EKLE</button>
+        </div><br />
+    }
+}

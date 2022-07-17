@@ -1,0 +1,25 @@
+﻿@using EntityLayer.Concrete
+@model YazilimHakkindaWebSitesi.Models.SubtitlesAndWritingModel
+@{
+    ViewBag.Title = "Writing";
+    Layout = "~/Views/Shared/_HomePageLayout.cshtml";
+}
+
+@section leftmenu{
+    <div>
+        @foreach (var item in Model.Subtitles)
+        {
+            <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location = '/HomePage/TitleWritings?titleID=@item.TitleID&subtitleName=@item.SubtitleName'"><b>@item.SubtitleName</b></button><br />
+        }
+    </div>
+}
+
+@section content{
+    <div>
+        <h1>@Model.Writing.WritingTitle</h1>
+        <h3>@Model.Writing.Member.MemberName @Model.Writing.Member.MemberSurname</h3>
+        <p>@Model.Writing.WritingText</p>
+        <h5>@Model.Writing.WritingDate.ToShortDateString() </h5>
+    </div>
+}
+

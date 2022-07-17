@@ -1,0 +1,65 @@
+﻿@model EntityLayer.Concrete.ContactMessage
+
+@{
+    ViewBag.Title = "Iletisim";
+    Layout = "~/Views/Shared/_HomePageLayout.cshtml";
+}
+
+<br />
+<br />
+@section leftmenu{
+    <div>
+        <h2>İLETİŞİM BİLGİLERİ</h2> <br /><br />
+        <img style="width:50px; height:50px; float:left; margin-right:5px" src="~/Images/emailBlack.png" alt="Email Logo" /><h4 style="position:relative; bottom:5px">bitirme_projesi1357@outlook.com</h4><br />
+        <img style="width:50px; height:50px; float:left" src="~/Images/locationBlack.png" alt="Location Logo" /><h4>Zonguldak, Turkey</h4>
+    </div>
+}
+
+@section content{
+    <h1 style="margin-left:350px">İLETİŞİM FORMU</h1>
+    <br />
+    <br />
+    @using (Html.BeginForm("Iletisim", "HomePage", FormMethod.Post))
+    {
+        <div style="margin-left:350px">
+            <table>
+                <tr>
+                    <td style="font-size:25px"><b>@Html.Label("Ad:")</b></td>
+                    <td>@Html.TextBoxFor(x => x.SenderName, new { style = "width:235px" })</td>
+                    <td>@Html.ValidationMessageFor(x => x.SenderName)</td>
+                </tr>
+                <tr>
+                    <td style="font-size:25px"><b>@Html.Label("Soyad:")</b></td>
+                    <td>@Html.TextBoxFor(x => x.SenderSurname, new { style = "width:235px" })</td>
+                    <td>@Html.ValidationMessageFor(x => x.SenderSurname)</td>
+                </tr>
+                <tr>
+                    <td style="font-size:25px"><b>@Html.Label("Email:")</b></td>
+                    <td>@Html.TextBoxFor(x => x.SenderEmail, new { style = "width:235px" })</td>
+                    <td>@Html.ValidationMessageFor(x => x.SenderEmail)</td>
+                </tr>
+                <tr>
+                    <td style="font-size:25px"><b>@Html.Label("Konu:")</b></td>
+                    <td>@Html.TextBoxFor(x => x.MessageSubject, new { style = "width:235px" })</td>
+                    <td>@Html.ValidationMessageFor(x => x.MessageSubject)</td>
+                </tr>
+                <tr>
+                    <td style="font-size:25px"><b>@Html.Label("Mesaj:")</b></td>
+                    <td>@Html.TextAreaFor(x => x.MessageText, 8, 30, new { @class = "form-control" })</td>
+                    <td>@Html.ValidationMessageFor(x => x.MessageText)</td>
+                </tr>
+            </table> <br />
+            <button style="background-color:#365670; font-size:20px; margin-left:150px"><b>GÖNDER</b></button>
+        </div>
+    }
+    @if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+        </script>
+    }
+    <br />
+    <br />
+}

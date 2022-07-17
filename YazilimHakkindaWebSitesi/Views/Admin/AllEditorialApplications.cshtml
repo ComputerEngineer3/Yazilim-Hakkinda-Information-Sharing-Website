@@ -1,0 +1,33 @@
+﻿@using EntityLayer.Concrete
+@model List<EditorialApplication>
+
+@{
+    ViewBag.Title = "AllEditorialApplications";
+    Layout = "~/Views/Shared/_HomePageLayout.cshtml";
+}
+
+@section leftmenu{
+    <div>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Admin/EditorOperations'"><b>Editör İşlemleri</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Admin/AllEditorialApplications'"><b>Editörlük Başvuruları</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Admin/ContactMessages'"><b>İletişim Mesajları</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Admin/AdminPasswordUpdate'"><b>Şifreyi Değiştir</b></button>
+    </div>
+}
+
+@section content{
+    <div>
+        @foreach (var item in Model)
+        {
+            <div style="width:330px; height:370px; background-color:#c3dde8; float:left; margin:10px; padding:10px">
+                <p><b>Ad Soyad:</b> @item.NameSurname</p>
+                <p><b>Yaş:</b> @item.Age</p>
+                <p><b>Mezuniyet Durumu:</b> @item.GraduationStatus</p>
+                <p><b>Haftalık Ayırılabilecek Zaman:</b> @item.WeeklyMinStudyTime</p>
+                <p><b>Editörlük Yapmak İstenilen Alan:</b> @item.RelatedTitle</p>
+                <p style="height:110px; overflow:hidden; display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:6; text-align:justify"><b>Alanla İlgili Deneyimler:</b> @item.RelatedTitleExperiences</p>
+                <button style="float:right; margin-right:10px; background-color:#365670; font-size:20px" onclick="location='/Admin/EditorialApplicationReview?id=@item.EditorialApplicationID'"><b>İncele...</b></button>
+            </div>
+        }
+    </div>
+}

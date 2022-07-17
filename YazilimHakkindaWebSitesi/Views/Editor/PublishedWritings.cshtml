@@ -1,0 +1,32 @@
+﻿@using EntityLayer.Concrete
+@model List<Writing>
+
+@{
+    ViewBag.Title = "PublishedWritings";
+    Layout = "~/Views/Shared/_HomePageLayout.cshtml";
+}
+
+@section leftmenu{
+    <div>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Editor/EditorProfile'"><b>Profil</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Editor/SubtitleEdit'"><b>Alt Başlıkları Düzenle</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Editor/NewAddedWritings'"><b>Yeni Eklenen Yazılar</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Editor/PublishedWritings'"><b>Yayınlanmış Yazılar</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Editor/EditorPasswordUpdate'"><b>Şifreyi Değiştir</b></button>
+    </div>
+}
+
+@section content{
+    <div>
+        @foreach (var item in Model)
+        {
+            <div style="width:330px; height:330px; background-color:#c3dde8; float:left; margin:20px">
+                <h2 style="height:50px; margin-left:10px; overflow:hidden; overflow-wrap:break-word; display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2">@item.WritingTitle</h2>
+                <p style="margin-left:10px"><b>@item.Member.MemberName @item.Member.MemberSurname</b></p>
+                <p style="height:110px; overflow:hidden; display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:6; text-align:justify; margin-left:10px; margin-top:10px; margin-right:10px; text-indent:30px">@item.WritingText</p>
+                <p style="margin-left:10px"><b>@item.WritingDate.ToShortDateString()</b></p>
+                <button style="float:right; margin-right:10px; background-color:#365670; font-size:15px" onclick="location = '/Editor/PublishedWritingsReview?writingID=@item.WritingID'"><b>İncele...</b></button>
+            </div>
+        }
+    </div>
+}

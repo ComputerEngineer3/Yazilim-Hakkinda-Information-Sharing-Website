@@ -1,0 +1,63 @@
+﻿@model EntityLayer.Concrete.Editor
+@{
+    ViewBag.Title = "EditorProfile";
+    Layout = "~/Views/Shared/_HomePageLayout.cshtml";
+}
+
+@section leftmenu{
+    <div>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Editor/EditorProfile'"><b>Profil</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Editor/SubtitleEdit'"><b>Alt Başlıkları Düzenle</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Editor/NewAddedWritings'"><b>Yeni Eklenen Yazılar</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Editor/PublishedWritings'"><b>Yayınlanmış Yazılar</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Editor/EditorPasswordUpdate'"><b>Şifreyi Değiştir</b></button>
+    </div>
+}
+
+@section content{
+    <div style="width:410px; background-color:#c3dde8; margin-left:300px; padding:30px">
+        <h1 style="margin-left:150px">PROFİL</h1>
+        <br />
+        <br />
+        @using (Html.BeginForm("EditorProfile", "Editor", FormMethod.Post))
+        {
+            <div>
+                <table>
+                    <tr>
+                        <td style="font-size:25px"><b>@Html.Label("Ad:")</b></td>
+                        <td>@Html.TextBoxFor(x => x.EditorName, new { style = "width:235px", @readonly = true })</td>
+                        <td>@Html.ValidationMessageFor(x => x.EditorName)</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size:25px"><b>@Html.Label("Soyad:")</b></td>
+                        <td>@Html.TextBoxFor(x => x.EditorSurname, new { style = "width:235px", @readonly = true })</td>
+                        <td>@Html.ValidationMessageFor(x => x.EditorSurname)</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size:25px"><b>@Html.Label("Kullanıcı Adı:")</b></td>
+                        <td>@Html.TextBoxFor(x => x.EditorUsername, new { style = "width:235px", @readonly = true })</td>
+                        <td>@Html.ValidationMessageFor(x => x.EditorUsername)</td>
+                    </tr>
+                </table><br /><br /><br /><br />
+                <table style="margin-left:70px">
+                    <tr>
+                        <td style="font-size:25px"><b>@Html.Label("E-mail:")</b></td>
+                        <td>@Html.TextBoxFor(x => x.EditorEmail, new { style = "width:235px" })</td>
+                        <td>@Html.ValidationMessageFor(x => x.EditorUsername)</td>
+                    </tr>
+                </table><br />
+                <button style="background-color:#365670; font-size:20px; margin-left:175px"><b>E-MAİL GÜNCELLE</b></button>
+            </div>
+        }
+    </div>
+    @if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            }
+        </script>
+        <br />
+        <br />
+    }
+}

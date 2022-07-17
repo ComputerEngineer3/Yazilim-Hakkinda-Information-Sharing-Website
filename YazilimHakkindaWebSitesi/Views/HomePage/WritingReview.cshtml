@@ -1,0 +1,15 @@
+﻿@using EntityLayer.Concrete
+@model Writing
+
+@{
+    ViewBag.Title = "WritingReview";
+    Layout = "~/Views/Shared/_HomePageLayout.cshtml";
+}
+
+<div style="margin:30px; text-align:justify">
+    <h1>@Model.WritingTitle</h1>
+    <h3>@Model.Member.MemberName @Model.Member.MemberSurname</h3>
+    <p>@Model.WritingText</p>
+    <h5>@Model.WritingDate.ToShortDateString() </h5>
+</div>
+

@@ -1,0 +1,32 @@
+﻿@model EntityLayer.Concrete.Subtitle
+
+@{
+    ViewBag.Title = "AddSubtitle";
+    Layout = "~/Views/Shared/_HomePageLayout.cshtml";
+}
+
+@section leftmenu{
+    <div>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Editor/EditorProfile'"><b>Profil</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Editor/SubtitleEdit'"><b>Alt Başlıkları Düzenle</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Editor/NewAddedWritings'"><b>Yeni Eklenen Yazılar</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Editor/PublishedWritings'"><b>Yayınlanmış Yazılar</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Editor/EditorPasswordUpdate'"><b>Şifreyi Değiştir</b></button>
+    </div>
+}
+
+@section content{
+    @using (Html.BeginForm("AddSubtitle", "Editor", FormMethod.Post))
+    {
+        <div style="width:450px; margin-left:300px; margin-top:50px; background-color:#c3dde8; padding:30px">
+            <table>
+                <tr>
+                    <td style="font-size:25px"><b>@Html.Label("Alt Başlık İsmi:")</b></td>
+                    <td>@Html.TextBoxFor(x => x.SubtitleName, new { style = "width:250px" })</td>
+                    <td>@Html.ValidationMessageFor(x => x.SubtitleName)</td>
+                </tr>
+            </table><br />
+            <button style="background-color:#365670; font-size:20px; margin-left:150px"><b>EKLE</b></button>
+        </div>
+    }
+}

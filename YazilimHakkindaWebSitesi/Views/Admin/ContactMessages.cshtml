@@ -1,0 +1,31 @@
+﻿@using EntityLayer.Concrete
+@model List<ContactMessage>
+
+@{
+    ViewBag.Title = "ContactMessages";
+    Layout = "~/Views/Shared/_HomePageLayout.cshtml";
+}
+
+@section leftmenu{
+    <div>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Admin/EditorOperations'"><b>Editör İşlemleri</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Admin/AllEditorialApplications'"><b>Editörlük Başvuruları</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Admin/ContactMessages'"><b>İletişim Mesajları</b></button>
+        <button style="width:300px; min-height:60px; background-color:#365670; font-size:24px; border:2px solid black; cursor:pointer; overflow-wrap:break-word" onclick="location='/Admin/AdminPasswordUpdate'"><b>Şifreyi Değiştir</b></button>
+    </div>
+}
+
+@section content{
+    @foreach (var item in Model)
+    {
+        <div style="background-color:#c3dde8; margin:20px; padding:20px">
+            <h3>Ad-Soyad: @item.SenderName @item.SenderSurname</h3>
+            <h3>E-mail: @item.SenderEmail</h3>
+            <h3>Konu: @item.MessageSubject</h3>
+            <p><b>Mesaj:</b> @item.MessageText</p>
+            <h3>Tarih: @item.ContactMessageDate</h3>
+            <button style="background-color:#365670; font-size:25px; margin-left:500px" onclick="location = '/Admin/DeleteContactMessage/@item.ContactMessageID'"><b>Sil</b></button>
+        </div>
+    }
+}
+
